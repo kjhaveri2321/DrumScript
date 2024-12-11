@@ -1,0 +1,12 @@
+cymbal = 'whole'
+hihat = 'sixteenth'
+tom = 'default'
+snare = 'quarter'
+floor_tom = 'default'
+kick = 'eighth'
+SHOW cymbal
+SHOW hihat
+SHOW tom
+SHOW snare
+SHOW floor_tom
+SHOW kick

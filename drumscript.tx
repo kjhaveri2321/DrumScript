@@ -1,0 +1,58 @@
+<score> ::= <beat>*  # A program consists of multiple beats or phrases.
+
+<beat> ::= <assignment> 
+         | <rhythm_expression> 
+         | <drum_control_structure> 
+         | <input_command> 
+         | <generate_tabs_command> 
+         | <show_command> 
+         | <error_handling>
+
+<assignment> ::= <drum_part> "=" <rhythm_expression>  # Assign a rhythm to a drum part.
+
+<rhythm_expression> ::= <note> ( <operator> <note> )*  # Mathematical or rhythmic operations on notes.
+                      | "(" <rhythm_expression> ")"   # Parentheses for grouping.
+
+<note> ::= <drum_part> 
+         | <duration> 
+         | <integer> 
+         | <float> 
+         | <string>
+         | <tab_pattern>  # A custom rhythm pattern like "x-x-o-".
+
+<operator> ::= "+" | "-" | "*" | "/" | "%"  # Mathematical or rhythmic operations.
+
+<drum_control_structure> ::= <if_groove> 
+                            | <while_groove> 
+                            | <repeat_phrase>
+
+<if_groove> ::= "IF" <condition> "PLAY" <score> "ENDIF"
+
+<while_groove> ::= "WHILE" <condition> "PLAY" <score> "ENDWHILE"
+
+<repeat_phrase> ::= "REPEAT" <integer> "TIMES" "PLAY" <score> "ENDREPEAT"
+
+<condition> ::= <rhythm_expression> <comparator> <rhythm_expression>
+
+<comparator> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
+
+<input_command> ::= "LOAD_TRACK" <file>  # Load a music track or drum pattern.
+
+<generate_tabs_command> ::= "GENERATE_TABS" "(" <file> ")"  # Create drum tabs from a music track.
+
+<show_command> ::= "SHOW" <drum_part>  # Display a rhythm or pattern.
+
+<error_handling> ::= "ERROR" <message>  # Display an error message.
+
+<drum_part> ::= "kick" | "snare" | "hihat" | "tom" | "cymbal" | "floor_tom"  # Drum components.
+
+<duration> ::= "quarter" | "eighth" | "sixteenth" | "whole"  # Note durations.
+
+<tab_pattern> ::= "[" (<symbol> "-")* <symbol> "]"  # A tab pattern like "[x-x-x-o]".
+
+<symbol> ::= "x" | "o" | "-"  # Drum hit, rest, or pause.
+
+<integer> ::= /[0-9]+/
+<float> ::= /[0-9]+\.[0-9]+/
+<file> ::= /".*"/
+<message> ::= /".*"/
